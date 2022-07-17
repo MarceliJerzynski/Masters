@@ -7,13 +7,14 @@ J:\IdeaProjects\Masters\src\main\java\common\Algorithm.java
 J:\IdeaProjects\Masters\src\main\java\dijkstra\ArrayPriorityQueue.java
 J:\IdeaProjects\Masters\src\main\java\astar\HeuresticQueueItem.java
 J:\IdeaProjects\Masters\src\main\java\fibonacci\FibonacciAlgorithm.java
+J:\IdeaProjects\Masters\src\main\java\initializers\KnapsackInitializer.java
 J:\IdeaProjects\Masters\src\main\java\common\IntegerMapper.java
 J:\IdeaProjects\Masters\src\main\java\knapsack\KnapsackAlgorithm.java
 J:\IdeaProjects\Masters\src\main\java\astar\ArrayHeuristicPriorityQueue.java
 J:\IdeaProjects\Masters\src\main\java\common\InitializerException.java
-J:\IdeaProjects\Masters\src\main\java\knapsack\KnapsackInitializer.java
 J:\IdeaProjects\Masters\src\main\java\common\ResultNotFoundException.java
 J:\IdeaProjects\Masters\src\main\java\dijkstra\QueueItem.java
+J:\IdeaProjects\Masters\src\main\java\initializers\GraphInitializer.java
 J:\IdeaProjects\Masters\src\main\java\astar\AstarAlgorithm.java
 J:\IdeaProjects\Masters\src\main\java\MastersApplication.java
 J:\IdeaProjects\Masters\src\main\java\common\Mode.java

@@ -15,10 +15,32 @@ public class BellmanFordAlgorithm implements Algorithm {
             {null, null, null, null, null},
             {null, -3  , null, null, null}
     };
-
-
     private static final int START_POINT = 0;
     private static final int END_POINT = 3;
+
+    private final Integer[][] m;
+    private final int startPoint;
+    private final int endPoint;
+
+    public BellmanFordAlgorithm() {
+        this.startPoint = START_POINT;
+        this.endPoint = END_POINT;
+        this.m = M;
+    }
+
+    public BellmanFordAlgorithm(int startPoint, int endPoint, Integer[][] m) {
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
+        this.m = m;
+    }
+
+
+    @Override
+    public void run() {
+        displayProblem(m, startPoint, endPoint);
+        Pair<Integer[], Integer[]> result = run(m, startPoint);
+        displaySolution(result.getLeft(), result.getRight(), startPoint, endPoint);
+    }
 
     private Pair<Integer, Integer> relax(Integer[] d, Integer[] p, Integer[][] M, Integer u, Integer v) {
         if (u == null || v == null || M[u][v] == null ) {
@@ -28,14 +50,6 @@ public class BellmanFordAlgorithm implements Algorithm {
             return Pair.of(d[u] + M[u][v], u);
         }
         return Pair.of(d[v], p[v]);
-    }
-
-
-    @Override
-    public void run() {
-        displayProblem(M, START_POINT, END_POINT);
-        Pair<Integer[], Integer[]> result = run(M, START_POINT);
-        displaySolution(result.getLeft(), result.getRight(), START_POINT, END_POINT);
     }
 
     private Pair<Integer[], Integer[]> run(Integer[][] M, int s) {
@@ -89,7 +103,7 @@ public class BellmanFordAlgorithm implements Algorithm {
             String[] row = new String[m.length +1];
             row[0] = String.valueOf(i);
             for(int j = 1; j <= m.length; j++) {
-                row[j] = M[i][j-1] == null ? "" : M[i][j-1].toString();
+                row[j] = m[i][j-1] == null ? "" : m[i][j-1].toString();
             }
             table.addRule();
             table.addRow(row);

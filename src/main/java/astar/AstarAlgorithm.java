@@ -24,12 +24,31 @@ public class AstarAlgorithm implements Algorithm {
     private static final int START_POINT = 0;
     private static final int END_POINT = 3;
 
+    private final Integer[][] m;
+    private final Integer[] h;
+    private final int startPoint;
+    private final int endPoint;
+
+    public AstarAlgorithm() {
+        this.startPoint = START_POINT;
+        this.endPoint = END_POINT;
+        this.m = M;
+        this.h = H;
+    }
+
+    public AstarAlgorithm(int startPoint, int endPoint, Integer[][] m, Integer[] h) {
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
+        this.m = m;
+        this.h = h;
+    }
+
 
     @Override
     public void run() {
-        displayProblem(M, H, START_POINT, END_POINT);
-        Pair<MutableInt[], Integer[]> result = run(M, H, START_POINT, END_POINT);
-        displaySolution(result.getLeft(), result.getRight(), START_POINT, END_POINT);
+        displayProblem(m, h, startPoint, endPoint);
+        Pair<MutableInt[], Integer[]> result = run(m, h, startPoint, endPoint);
+        displaySolution(result.getLeft(), result.getRight(), startPoint, endPoint);
     }
 
     private Pair<MutableInt, Integer> relax(MutableInt[] d, Integer[] p,  Integer[][] M, Integer u, Integer v) {
@@ -95,7 +114,7 @@ public class AstarAlgorithm implements Algorithm {
             String[] row = new String[m.length +1];
             row[0] = String.valueOf(i);
             for(int j = 1; j <= m.length; j++) {
-                row[j] = M[i][j-1] == null ? "" : M[i][j-1].toString();
+                row[j] = m[i][j-1] == null ? "" : m[i][j-1].toString();
             }
             graphTable.addRule();
             graphTable.addRow(row);

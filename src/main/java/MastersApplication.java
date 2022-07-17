@@ -9,6 +9,7 @@ import initializers.GraphInitializer;
 import knapsack.KnapsackAlgorithm;
 import initializers.KnapsackInitializer;
 import matrixes.MatrixMultiplicationAlgorithm;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 
 import java.io.IOException;
@@ -44,6 +45,13 @@ public class MastersApplication {
                 break;
             case DIJKSTRA:
                 runDijkstra(args);
+                break;
+            case ASTAR:
+                runAstar(args);
+                break;
+            case BELLMANFORD:
+                runBellmanFord(args);
+                break;
             default:
                 System.out.println("Podany argument nie zawiera się w liście możliwych trybów");
         }
@@ -124,7 +132,28 @@ public class MastersApplication {
         }
     }
 
-//    private static void runGraphAlgorithm(String[] args, Runnable )
+    private static void runAstar(String[] args) throws IOException {
+        if (args.length == 1) {
+            new AstarAlgorithm().run();
+        } else if (args.length == 2) {
+            Triple<Pair<Integer, Integer>, Integer[], Integer[][]> graph = GraphInitializer.getInputGraphDataWithHeuristicFromFile(args[1]);
+            new AstarAlgorithm(graph.getLeft().getLeft(), graph.getLeft().getRight(), graph.getRight(), graph.getMiddle()).run();
+        } else {
+            System.out.println("Maksymalna liczba argumentów liczbowych wynosi 2");
+        }
+    }
+
+    private static void runBellmanFord(String[] args) throws IOException {
+        if (args.length == 1) {
+            new BellmanFordAlgorithm().run();
+        } else if (args.length == 2) {
+            Triple<Integer, Integer, Integer[][]> graph = GraphInitializer.getInputGraphDataFromFile(args[1]);
+            new BellmanFordAlgorithm(graph.getLeft(), graph.getMiddle(), graph.getRight()).run();
+        } else {
+            System.out.println("Maksymalna liczba argumentów liczbowych wynosi 2");
+        }
+    }
+
 
     private static void runForNoArguments() {
         final Algorithm[] algorithms = new Algorithm[]{

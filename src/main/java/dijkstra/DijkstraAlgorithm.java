@@ -100,7 +100,7 @@ public class DijkstraAlgorithm implements Algorithm {
             String[] row = new String[m.length +1];
             row[0] = String.valueOf(i);
             for(int j = 1; j <= m.length; j++) {
-                row[j] = M[i][j-1] == null ? "" : M[i][j-1].toString();
+                row[j] = m[i][j-1] == null ? "" : m[i][j-1].toString();
             }
             table.addRule();
             table.addRow(row);

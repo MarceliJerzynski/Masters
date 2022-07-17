@@ -2,7 +2,7 @@ package initializers;
 
 import common.InitializerException;
 import common.IntegerMapper;
-import knapsack.Item;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 
 import java.io.BufferedReader;
@@ -22,6 +22,20 @@ public class GraphInitializer {
         }
         reader.close();
         return Triple.of(startPoint, endPoint, matrix);
+    }
+
+    public static Triple<Pair<Integer, Integer>, Integer[], Integer[][]> getInputGraphDataWithHeuristicFromFile(String filePath) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        int startPoint = mapToNumber(reader.readLine());
+        int endPoint = mapToNumber(reader.readLine());
+
+        Integer[] heuristics = mapToRow(reader.readLine());
+        Integer[][] matrix = reader.lines().map(GraphInitializer::mapToRow).toArray(Integer[][]::new);
+        if (matrix.length < startPoint || matrix.length < endPoint) {
+            System.out.println("Podane punkty nie są zawarte w macierzy!");
+        }
+        reader.close();
+        return Triple.of(Pair.of(startPoint, endPoint), heuristics, matrix);
     }
 
     private static Integer[] mapToRow(String line) {
